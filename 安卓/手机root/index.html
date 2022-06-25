@@ -9,7 +9,7 @@
     
     <title>
         
-            安卓分区解析 |
+            手机root |
         
         落雨的博客
     </title>
@@ -150,7 +150,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">安卓分区解析</span>
+            <span class="title-hover-animation">手机root</span>
         </div>
 
         
@@ -167,8 +167,8 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;
-        <span class="pc">2022-06-21 23:42:47</span>
-        <span class="mobile">2022-06-21 23:42</span>
+        <span class="pc">2022-06-25 20:08:00</span>
+        <span class="mobile">2022-06-25 20:08</span>
     </span>
     
         <span class="article-categories article-meta-item">
@@ -192,7 +192,7 @@
                     </li>
                 
                     <li>
-                        | <a href="/tags/%E7%A7%91%E6%99%AE/">科普</a>&nbsp;
+                        | <a href="/tags/root/">root</a>&nbsp;
                     </li>
                 
             </ul>
@@ -202,7 +202,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>1.5k 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.7k 字</span>
         </span>
     
     
@@ -219,42 +219,81 @@
         
 
         <div class="article-content markdown-body">
-            <h1 id="安卓分区"><a href="#安卓分区" class="headerlink" title="安卓分区"></a>安卓分区</h1><h2 id="Boot-分区"><a href="#Boot-分区" class="headerlink" title="Boot 分区"></a>Boot 分区</h2><p>        Boot 分区存放启动和引导文件，类似于 windows 系统中的 esp 分区。它包含操作系统的 kernel（内核）和 ramdisk（虚拟内存盘）。magisk 对手机进行 root 就是对 Boot 分区进行修改。Boot 分区损坏，开机就会卡在 logo 界面。</p>
-<p>        | <a class="link"   target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%9B%98/5901400" >虚拟内存盘<i class="fas fa-external-link-alt"></i></a>：将通过软件将一部分内存（RAM）模拟为硬盘来使用的一种技术，可以极大的提高在其上进行的文件访问的速度。</p>
-<h2 id="System-分区"><a href="#System-分区" class="headerlink" title="System 分区"></a>System 分区</h2><p>        System 分区包含操作系统和系统预装软件。它是系统分区和刷机的主要对象。擦除该分区不会导致无法启动，但是如果该分区损坏，就会开在开机动画界面。</p>
-<h2 id="Vendor-分区"><a href="#Vendor-分区" class="headerlink" title="Vendor 分区"></a>Vendor 分区</h2><p>        Vendor 分区包含开发厂商定制的应用和库文件，属于厂商夹带的私货，比如小米手机的小米音乐，小米视频等。现在厂商大多把它放到 system 分区中。</p>
-<h2 id="Data-分区"><a href="#Data-分区" class="headerlink" title="Data 分区"></a>Data 分区</h2><p>        又叫 Userdata 分区，挂在在&#x2F;data 目录下。此分区包含了用户的数据信息，如：联系人、短信、设置、用户安装的程序的，擦除此分区，相当于手机恢复出厂设置。不会影响手机开机。Andorid11 后，对 data 分区进行了加密。</p>
-<h2 id="Cache-分区"><a href="#Cache-分区" class="headerlink" title="Cache 分区"></a>Cache 分区</h2><p>        Cache 分区是安卓系统的缓存区，保存系统最常访问的数据和应用程序。擦除这个分区，不会影响个人数据，只是删除了这个分区中已经保存的缓存内容，缓存内容会在后续手机使用过程中重新自动生成。</p>
-<h2 id="Recovery-分区"><a href="#Recovery-分区" class="headerlink" title="Recovery 分区"></a>Recovery 分区</h2><p>        恢复分区，相当于 Windows 的 pe 系统。刷机必备。一般手机自带的 recovery 分区功能较少，所以我们会刷入第三方 rec。现在的一些手机将 rec 分区合并到了 boot 分区中，那么相应的，刷机也自然有不用 rec 的办法。</p>
-<p>        我们将用 rec 的刷机方式叫做卡刷。</p>
-<h2 id="Modem-分区"><a href="#Modem-分区" class="headerlink" title="Modem 分区"></a>Modem 分区</h2><p>        Modem 分区，又或者叫做 Radio 分区。保存手机的基带和芯片等。通俗的来说，就是手机的联网，打电话，发短信等与电信网络交互的行为都是靠这个分区。</p>
-<h2 id="Misc-分区"><a href="#Misc-分区" class="headerlink" title="Misc 分区"></a>Misc 分区</h2><p>        Miscellaneous，杂项。这个分区存放了一些乱七八糟的设置，也是非常重要的一个分区。Misc 分区损坏，会导致手机一些特定功能无法正常工作。</p>
-<h2 id="Hboot-分区（bootloader）"><a href="#Hboot-分区（bootloader）" class="headerlink" title="Hboot 分区（bootloader）"></a>Hboot 分区（bootloader）</h2><p>        Hboot 分区用来保存 bootloader。这个 bootloader 相当于电脑的 bios&#x2F;uefi，是根植于手机硬件的。也是刷机党们最常用的模式。bootloader 一般来说不会损坏，这也是手机变砖前的倒数第二道防线。如果手机连 bootloader 都进不去，那只能考虑 9008 了。如果 9008 都不行，那就用来砸人吧。</p>
-<h1 id="Bootloader-和-Fastboot"><a href="#Bootloader-和-Fastboot" class="headerlink" title="Bootloader 和 Fastboot"></a>Bootloader 和 Fastboot</h1><p>        一开始刷机的时候，总是搞不清楚这两个东西。有说进入 bootloader 的，有说进入 fastboot 模式的。那么在长时间的刷机过程中呢，我对这两个东西有了一些自己的理解，希望可以帮到大家区分这两个模式。</p>
-<p>        首先，刷机教程中，无论是 bootloader 还是 fastboot 模式，其实都是一个东西，比如下图中小米的兔子。</p>
-<p><img src="/images/xiaomi-fastboot.png"></p>
-<p>        我个人认为呢，这个应该叫做 bootloader，使用的是 fastboot 命令，所以可以叫做 fastboot 模式。他们的区别在于，bootloader 是一段引导程序，而 fastboot 是在这个程序中可以使用的命令。在这个模式下刷机，我们称之为线刷。线刷也是目前没有 rec 分区的手机最常用的刷机方法。</p>
-<h1 id="安卓系统启动分析"><a href="#安卓系统启动分析" class="headerlink" title="安卓系统启动分析"></a>安卓系统启动分析</h1><p>        对于安卓启动的过程做一个大致的分析，不涉及开发层面。</p>
-<h2 id="普通手机"><a href="#普通手机" class="headerlink" title="普通手机"></a>普通手机</h2><p><img src="/images/process1.png"></p>
+            <h2 id="手机root"><a href="#手机root" class="headerlink" title="手机root"></a>手机root</h2><h3 id="什么是root"><a href="#什么是root" class="headerlink" title="什么是root"></a>什么是root</h3><p>        我们平时使用手机，是作为一个使用者来做的，只有部分的权限。root，翻译为根，就是从手机的底层出发，可以获得所有的权限。举个例子，租房子，就只能使用房间里给你安排好的东西，但你不能装修房子。但如果这房子是你买的，那就可以对它为所欲为了。</p>
+<p>        手机root，就是让你获得最高的权限。你可以做到一些普通用户无法做到的事情，比如删除系统自带软件，删除系统文件，修改应用数据，手机定位，cpu超频等。</p>
+<h3 id="root的坏处"><a href="#root的坏处" class="headerlink" title="root的坏处"></a>root的坏处</h3><p>        root有哪些好处，大家最好自己体验一番，反正用过的都说好，但必须要先知道root的坏处。我认为只有一点：不安全。</p>
+<p>        首先对于用户来说，用root删除某些文件导致无法开机，甚至数据丢失，是常有的事情。所以进行刷机前一定要备份，并且学会救砖。</p>
+<p>        另外就是root权限被其他人利用。比如用root权限，获取你的私人数据，甚至锁屏密码和支付密码。再或者控制你的手机去做什么违法的事情，都是有可能的。</p>
+<p>        第二点或许有点扯，但第一点确实是常有的事。所以root手机，也千万要小心，不然出现点什么意外就只能重刷了。
+    </p>
+<h2 id="Magisk"><a href="#Magisk" class="headerlink" title="Magisk"></a>Magisk</h2><h3 id="什么是magisk"><a href="#什么是magisk" class="headerlink" title="什么是magisk"></a>什么是magisk</h3><p>        magisk是中国台湾的topjohnwu做的一款软件，它能获取和管理root权限，并且挂载各种扩展模块，非常的强大。</p>
+<p>        除此之外，还有Magiskhide（现阶段只有zygisk版才有这个功能），对单个应用隐藏root权限。这一功能非常重要，屏蔽支付宝和银行app对root的root检测。</p>
+<p>        magisk的亮点还是在于那些模块。要刷模块的话建议去酷安，xda论坛里去找。博主首推一个，自动神仙救砖。以防刷错模块导致开不了机。</p>
+<h3 id="Magisk原理"><a href="#Magisk原理" class="headerlink" title="Magisk原理"></a>Magisk原理</h3><p>        magisk会对boot进行修补，那么启动的时候，boot就不会前往system分区，而是进入magisk分区。这个分区会挂载一个在system的基础上能够替换，增加和删除自定义内容的文件系统，但不会对system分区进行任何修改。所有操作在启动的时候就完成了。</p>
+<p>        相比于以前的root软件，比如supersu，对系统进行更改，magisk更为安全，强大。目前magisk是主流的root方式。基本玩机佬的手机里都有一个。</p>
+<p>        当卸载magisk后，系统依然完好，仍然可以进行ota升级。如果带着magisk进行ota升级的话，需要刷全量包，并且升级完成之后，要重新刷入magisk。</p>
+<h3 id="Magisk刷入"><a href="#Magisk刷入" class="headerlink" title="Magisk刷入"></a>Magisk刷入</h3><ul>
+<li>准备工作</li>
+</ul>
 <ol>
-<li><p>按下电源，bootloader 开始引导启动。</p>
+<li><p>首先要确保手机已经解锁了bootloader。每个手机都有对应的方法，建议去官网查。以小米手机为例，下载<a class="link"   target="_blank" rel="noopener" href="http://www.miui.com/unlock/download.html" >小米解锁工具<i class="fas fa-external-link-alt"></i></a>，按照上面的说明进行操作。一个小米账号一年最多解锁两个手机。</p>
 </li>
-<li><p>bootloader 初始化设备，引导系统内核。可进入 bootloader，开始线刷。</p>
+<li><p>然后进入系统设置，多次点击<u>版本号</u>，进入<u>开发者模式</u>。找不到可以搜索。把开发者模式中的usb调试打开。这一步方便从系统进入bootloader，会进的可以不做。</p>
 </li>
-<li><p>在 bootloader 准备内存（ram）空间。可进入 rec 分区，开始卡刷</p>
+<li><p>电脑下载<a class="link"   target="_blank" rel="noopener" href="https://developer.android.google.cn/studio/releases/platform-tools" >platform-tools<i class="fas fa-external-link-alt"></i></a>,下载对应自己电脑的版本。然后解压，在文件夹中打开右键，在终端中打开。</p>
 </li>
-<li><p>进入 boot 分区，启动系统。</p>
+<li><p>通过数据线连接手机和电脑，在windows终端中输入<code>adb devices</code>，手机点允许。整个刷机过程中，手机与电脑保持连接状态。</p>
 </li>
 </ol>
-<p>        从上面的启动过程可以看出，fastboot 比 rec 要更加的底层。所以当 rec 不好用时，我们依然可以尝试进入 fastboot。</p>
-<h2 id="A-x2F-B-分区手机"><a href="#A-x2F-B-分区手机" class="headerlink" title="A&#x2F;B 分区手机"></a>A&#x2F;B 分区手机</h2><p><img src="/images/process2.png"></p>
-<p>        A&#x2F;B 分区与普通的情况不同之处就在于有两个分区。假设，正常情况下我们使用 A 分区的 systemA，那么，在升级系统或者安装刷机包时，就会安装到 B 分区的 systemB。</p>
-<p>        这样的设计，在 ota 升级给予了极大的方便。我们可以在 systemA 正常使用手机，后台把系统刷入 systemB。等到升级完成，就从 Slot B 进入 B 分区。同系统的升级，对于用户个人数据，即 data 分区是没有影响的。</p>
-<p>        但是 A&#x2F;B 分区的缺点也是同样明显的，占用双倍的 system 空间，非常的浪费。因此出现了 VA&#x2F;B 分区（Virtual A&#x2F;B System Updates）。结合普通手机和 A&#x2F;B 分区的特点，将 boot 分区和 system 分区分出虚拟的 A&#x2F;B 分区。相同文件公用，不同文件存放到虚拟区。</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>        A&#x2F;B 分区手机相对来说不是那么好刷，没有了 rec 分区，第三方的 rec 必须刷两遍进行固定。建议在刷机之前，要先了解如何备份，救砖。刷机出现变砖是常有的事情，遇到不要慌。还有就是<strong>不要用主力机</strong>，除非你已经非常非常的熟练了。</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a class="link"   target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1BY4y1H7Mc" >玩机必看！带你入坑安卓刷机，小白也能看懂的 ROOT 基础指南来啦！<i class="fas fa-external-link-alt"></i></a></p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://www.jianshu.com/p/601a5e187bb9" >安卓架构&#x2F;分区理解&#x2F;作用 - 简书<i class="fas fa-external-link-alt"></i></a></p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://www.bbsmax.com/A/Ae5RDARLzQ/" >Android 系统分区理解及分区目录细解【转】<i class="fas fa-external-link-alt"></i></a></p>
+<ul>
+<li>修补boot刷入（仅高通）</li>
+</ul>
+<p>        这是目前比较常用并且简单的方法。首先是在刷机包中找到boot.img文件。刷机包可以在手机的系统更新中下载，也可以去官方下载对应自己版本的rom包。比如小米手机，如下图</p>
+<p><img src="/images/%E5%AE%89%E8%A3%85%E5%8C%85.png"></p>
+<p>        </p>
+<p>        小米手机可以去<a class="link"   target="_blank" rel="noopener" href="https://xiaomirom.com/" >小米rom<i class="fas fa-external-link-alt"></i></a>中下载对应rom包。下载好后，解压，找到boot.img。如下图。</p>
+<p><img src="/images/bootimg.png"></p>
+<p>        我这里是卡刷包，线刷包里也可以找到。</p>
+<ol>
+<li><p>将boot.img复制到手机中（留一份在电脑备用）</p>
+</li>
+<li><p>下载并安装magisk<a class="link"   target="_blank" rel="noopener" href="https://github.com/topjohnwu/Magisk/releases" >官方地址<i class="fas fa-external-link-alt"></i></a> ，酷安里同样可以下载。</p>
+</li>
+<li><p>打开magisk，安装，选择并修补一个文件，选择复制到手机中的boot.img</p>
+</li>
+<li><p>将得到的img文件传回电脑中。一般文件在download文件夹中，注意看magisk修补完的说明</p>
+</li>
+<li><p>重启手机至bootloader。可以用adb命令 <code>adb reboot bootloader</code>。或者关机，然后按照对应的组合按键进入。 </p>
+</li>
+<li><p>电脑在之前打开的windows终端中，输入<code>fastboot flash boot ***.img</code> ***.img指修补的img文件。只要将文件拖入黑框中，就可以出现路径。后面都可以这样做。</p>
+</li>
+<li><p>刷写成功后重启。如果开机，就成功了。如果无法开机，就按照第六步的命令，刷入之前的boot.img文件。</p>
+</li>
+</ol>
+<p>联发科机型还需要刷入vemeta.img，感兴趣的可以去<a class="link"   target="_blank" rel="noopener" href="https://web.vip.miui.com/page/info/mio/mio/detail?postId=35931665&app_version=dev.20051" >小米社区<i class="fas fa-external-link-alt"></i></a>看看。</p>
+<ul>
+<li>第三方rec刷入。</li>
+</ul>
+<ol>
+<li><p>首先去<a class="link"   target="_blank" rel="noopener" href="https://twrp.me/Devices/" >twrp<i class="fas fa-external-link-alt"></i></a>找到适合自己的rec文件，如果没有可以尝试去xda论坛或者百度一下，有无大佬做对应的rec。</p>
+</li>
+<li><p>进入bootloader，输入<code>fastboot flash recovery recovery.img</code> recovery.img是指你下载下来的img文件。</p>
+</li>
+<li><p>无论第二步是否成功，你都可以输入<code>fastboot boot recovery.img</code>进入recovery。有些机型无法刷入rec。可以通过这种方式进入临时的rec。</p>
+</li>
+<li><p>将之前下载好的magisk.apk文件，更名为magisk.zip，传入手机中。</p>
+</li>
+<li><p>在rec模式下，点安装，选择magisk.zip文件，刷入，重启至系统。</p>
+</li>
+<li><p>如果成功的话，手机应用里会有一个magisk的应用。可以将magisk.zip重新更名为magisk.apk，安装到手机中。</p>
+</li>
+</ol>
+<p>有些大佬制作的rec中，高级选项中，有root的选项，与刷入magisk是一样的。</p>
+<ul>
+<li>magisk模块刷入</li>
+</ul>
+<p>        现在magisk的模块商店好像是没有了，只能通过本地安装了。这里推荐使用<a class="link"   target="_blank" rel="noopener" href="https://gjzsr.com/" >搞机助手<i class="fas fa-external-link-alt"></i></a>在里面选择模块直接刷入。具体刷入什么模块，去酷安查一下就了解了。我个人不喜欢花里胡哨的东西，所以模块安的并不多。还是要大家自己折腾吧。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>最后，刷机前要<strong>备份！备份！备份！</strong>。刷机有风险，操作需谨慎。折腾虽好，但要注意休息，争取在一点前睡。</p>
 
         </div>
 
@@ -262,11 +301,11 @@
             <div class="post-copyright-info">
                 <div class="article-copyright-info-container">
     <ul>
-        <li>本文标题：安卓分区解析</li>
+        <li>本文标题：手机root</li>
         <li>本文作者：落雨</li>
-        <li>创建时间：2022-06-21 23:42:47</li>
+        <li>创建时间：2022-06-25 20:08:00</li>
         <li>
-            本文链接：https://rainfall-breeze.github.io/安卓/安卓分区解析/
+            本文链接：https://rainfall-breeze.github.io/安卓/手机root/
         </li>
         <li>
             版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -285,7 +324,7 @@
                     </li>
                 
                     <li class="tag-item">
-                        <a href="/tags/%E7%A7%91%E6%99%AE/">#科普</a>&nbsp;
+                        <a href="/tags/root/">#root</a>&nbsp;
                     </li>
                 
             </ul>
@@ -294,29 +333,14 @@
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/%E4%B9%90%E7%90%86/%E5%92%8C%E5%BC%A6%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">和弦相关知识</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/chatting/%E4%B8%80%E4%BA%9B%E7%A2%8E%E7%A2%8E%E5%BF%B5/"
+                           href="/%E4%B9%90%E7%90%86/%E5%92%8C%E5%BC%A6%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">一些碎碎念</span>
+                                <span class="post-nav-title-item">和弦相关知识</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -474,7 +498,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E5%8D%93%E5%88%86%E5%8C%BA"><span class="nav-text">安卓分区</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Boot-%E5%88%86%E5%8C%BA"><span class="nav-text">Boot 分区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#System-%E5%88%86%E5%8C%BA"><span class="nav-text">System 分区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vendor-%E5%88%86%E5%8C%BA"><span class="nav-text">Vendor 分区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-%E5%88%86%E5%8C%BA"><span class="nav-text">Data 分区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cache-%E5%88%86%E5%8C%BA"><span class="nav-text">Cache 分区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Recovery-%E5%88%86%E5%8C%BA"><span class="nav-text">Recovery 分区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Modem-%E5%88%86%E5%8C%BA"><span class="nav-text">Modem 分区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Misc-%E5%88%86%E5%8C%BA"><span class="nav-text">Misc 分区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hboot-%E5%88%86%E5%8C%BA%EF%BC%88bootloader%EF%BC%89"><span class="nav-text">Hboot 分区（bootloader）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Bootloader-%E5%92%8C-Fastboot"><span class="nav-text">Bootloader 和 Fastboot</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E5%8D%93%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E5%88%86%E6%9E%90"><span class="nav-text">安卓系统启动分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%99%AE%E9%80%9A%E6%89%8B%E6%9C%BA"><span class="nav-text">普通手机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-x2F-B-%E5%88%86%E5%8C%BA%E6%89%8B%E6%9C%BA"><span class="nav-text">A&#x2F;B 分区手机</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-text">参考资料</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%8B%E6%9C%BAroot"><span class="nav-text">手机root</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFroot"><span class="nav-text">什么是root</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#root%E7%9A%84%E5%9D%8F%E5%A4%84"><span class="nav-text">root的坏处</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Magisk"><span class="nav-text">Magisk</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFmagisk"><span class="nav-text">什么是magisk</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Magisk%E5%8E%9F%E7%90%86"><span class="nav-text">Magisk原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Magisk%E5%88%B7%E5%85%A5"><span class="nav-text">Magisk刷入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a></li></ol></li></ol>
     </div>
 </div>
         </aside>
